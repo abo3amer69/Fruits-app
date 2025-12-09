@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_apps/constants.dart';
+import 'package:fruits_apps/core/services/shared_preferances_singelton.dart';
 import 'package:fruits_apps/core/utils/app_images.dart';
+import 'package:fruits_apps/features/auth/presentation/views/login_view.dart';
 import 'package:fruits_apps/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:svg_flutter/svg_flutter.dart';
 
@@ -10,15 +13,14 @@ class SplashViewBody extends StatefulWidget {
   State<SplashViewBody> createState() => _SplashViewBodyState();
 }
 
-
 class _SplashViewBodyState extends State<SplashViewBody> {
   @override
   void initState() {
     excuteNavigation();
     super.initState();
   }
+
   @override
-  
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -29,16 +31,20 @@ class _SplashViewBodyState extends State<SplashViewBody> {
           children: [SvgPicture.asset(Assets.imagesPlant)],
         ),
         SvgPicture.asset(Assets.imagesLogo),
-        SvgPicture.asset(Assets.imagesSplashBottom,
-        fit: BoxFit.fill,
-        ),
+        SvgPicture.asset(Assets.imagesSplashBottom, fit: BoxFit.fill),
       ],
     );
   }
-  
+
   void excuteNavigation() {
+    bool isOnBoardingViewSeen = Prefs.getBool(kIsOnBoardingViewSeen);
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, OnBoardingView.routeName);
+      if (isOnBoardingViewSeen) {
+        Navigator.pushReplacementNamed(context, LoginView.routeName);
+      }
+      else {
+        Navigator.pushReplacementNamed(context, OnBoardingView.routeName);
+      }
     });
   }
 }
