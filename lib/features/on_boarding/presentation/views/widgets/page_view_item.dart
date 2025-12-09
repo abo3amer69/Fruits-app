@@ -8,11 +8,13 @@ class PageViewItem extends StatelessWidget {
     required this.backgroundimage,
     required this.subTitle,
     required this.title,
+    required this.isVisible,
   });
 
   final String image, backgroundimage;
   final String subTitle;
   final Widget title;
+  final bool isVisible;
 
   @override
   Widget build(BuildContext context) {
@@ -32,20 +34,27 @@ class PageViewItem extends StatelessWidget {
                 right: 0,
                 child: SvgPicture.asset(image),
               ),
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: Text('تخط'),
+              Visibility(
+                visible: isVisible,
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Text('تخط',style: TextStyle(color: Color(0xff949D9E),),),
+                ),
               ),
             ],
           ),
         ),
-      SizedBox(height: 64,),
-      title,
-      SizedBox(height: 24,),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Text(subTitle,textAlign: TextAlign.center,),
-      ),
+        SizedBox(height: 64),
+        title,
+        SizedBox(height: 24),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 37),
+          child: Text(
+            subTitle,
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Color(0xff4E5456)),
+          ),
+        ),
       ],
     );
   }

@@ -8,19 +8,24 @@ import 'generated/l10n.dart';
 void main() {
   runApp(const FruitHub());
 }
+
 class FruitHub extends StatelessWidget {
   const FruitHub({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(localizationsDelegates: [
-                S.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: S.delegate.supportedLocales,
-            locale: const Locale('ar'),
+    return MaterialApp(
+      theme: ThemeData(
+        fontFamily: 'Cairo',
+      ),
+      localizationsDelegates: [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
+      locale: const Locale('ar'),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: onGenerateRoutes,
       initialRoute: SplashView.routeName,
