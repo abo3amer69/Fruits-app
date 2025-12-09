@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_apps/features/auth/presentation/views/login_view.dart';
 import 'package:fruits_apps/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:fruits_apps/features/splash/presentation/views/splash_view.dart';
 
@@ -7,8 +8,13 @@ Route onGenerateRoutes(RouteSettings settings) {
     case SplashView.routeName:
       return MaterialPageRoute(builder: (context) => const SplashView());
 
-      case OnBoardingView.routeName:
+    case OnBoardingView.routeName:
       return MaterialPageRoute(builder: (context) => const OnBoardingView());
+
+    case LoginView.routeName:
+      return MaterialPageRoute(builder: (context) => const LoginView());
+
+      
     default:
       return MaterialPageRoute(builder: (context) => const Placeholder());
   }
