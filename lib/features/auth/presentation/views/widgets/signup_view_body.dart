@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_apps/constants.dart';
 import 'package:fruits_apps/core/widgets/custom_text_form_field.dart';
+import 'package:fruits_apps/features/auth/presentation/views/widgets/terms_and_condition.dart';
 
 class SignupViewBody extends StatelessWidget {
   const SignupViewBody({super.key});
@@ -31,6 +32,7 @@ class SignupViewBody extends StatelessWidget {
                 textInputType: TextInputType.emailAddress,
               ),
               SizedBox(height: 16),
+              TermsAndCondition(),
            ],
         ),
       ),
