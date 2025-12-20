@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "3779598428",
+    "project_id": "fruits-hub-ahmed",
+    "storage_bucket": "fruits-hub-ahmed.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:3779598428:android:3ac2562d8d75163f31ee99",
+        "android_client_info": {
+          "package_name": "com.example.fruits_apps"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_okXotcizTx6zOc6ioRTmjmKW4oLA_vQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
