@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:fruits_apps/core/errors/exceptions.dart';
 import 'package:fruits_apps/core/errors/failures.dart';
@@ -25,9 +27,10 @@ class AuthRepoImpl extends AuthRepo {
     } on CustomException catch (e) {
       return left(ServerFailure(e.message));
     } catch (e) {
-      return left(
-        ServerFailure('لقد حدث خطأ ما، الرجاء المحاولة لاحقاً.'),
+      log(
+        'Exception in AuthRepoImpl creatUserWithEmaimAndPassword: ${e.toString()}',
       );
+      return left(ServerFailure('لقد حدث خطأ ما، الرجاء المحاولة لاحقاً.'));
     }
   }
 }
