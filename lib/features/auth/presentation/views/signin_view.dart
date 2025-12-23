@@ -6,6 +6,7 @@ import 'package:fruits_apps/core/widgets/custom_app_bar.dart';
 import 'package:fruits_apps/features/auth/domain/repos/auth_repo.dart';
 import 'package:fruits_apps/features/auth/presentation/cubits/signin_cubit/signin_cubit.dart';
 import 'package:fruits_apps/features/auth/presentation/views/widgets/signin_view_body.dart';
+import 'package:fruits_apps/features/auth/presentation/views/widgets/signin_view_body_bloc_consumer.dart';
 
 class SigninView extends StatelessWidget {
   const SigninView({super.key});
@@ -15,12 +16,10 @@ class SigninView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SigninCubit(
-        getIt<AuthRepo>(),
-      ),
+      create: (context) => SigninCubit(getIt<AuthRepo>()),
       child: Scaffold(
         appBar: buildAppBar(context, title: 'تسجيل الدخول'),
-        body: SigninViewBody(),
+        body: SigninViewBodyBlocConsumer(),
       ),
     );
   }
