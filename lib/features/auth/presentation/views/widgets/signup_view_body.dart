@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_apps/constants.dart';
 import 'package:fruits_apps/core/widgets/custom_button.dart';
 import 'package:fruits_apps/core/widgets/custom_text_form_field.dart';
+import 'package:fruits_apps/core/widgets/password_field.dart';
 import 'package:fruits_apps/features/auth/presentation/cubits/signup_cubit/signup_cubit.dart';
 import 'package:fruits_apps/features/auth/presentation/views/widgets/have_an_account.dart';
 import 'package:fruits_apps/features/auth/presentation/views/widgets/terms_and_condition.dart';
@@ -17,7 +18,7 @@ class SignupViewBody extends StatefulWidget {
 class _SignupViewBodyState extends State<SignupViewBody> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  late String email ,userName , password;
+  late String email, userName, password;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -30,7 +31,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
             children: [
               SizedBox(height: 24),
               CustomTextFormField(
-                onSaved: (value){
+                onSaved: (value) {
                   userName = value!;
                 },
                 hintText: 'الاسم كامل',
@@ -38,7 +39,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
               ),
               SizedBox(height: 16),
               CustomTextFormField(
-                onSaved: (value){
+                onSaved: (value) {
                   email = value!;
                 },
                 hintText: 'البريد الالكتروني',
@@ -46,16 +47,10 @@ class _SignupViewBodyState extends State<SignupViewBody> {
               ),
               SizedBox(height: 16),
 
-              CustomTextFormField(
-                onSaved: (value){
+              passwordField(
+                onSaved: (value) {
                   password = value!;
                 },
-                suffixIcon: Icon(
-                  Icons.remove_red_eye,
-                  color: Color(0xffC9CECF),
-                ),
-                hintText: ' كلمة المرور',
-                textInputType: TextInputType.visiblePassword,
               ),
               SizedBox(height: 16),
               TermsAndCondition(),
@@ -64,11 +59,14 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
-                    context.read<SignupCubit>().creatUserWithEmailAndPassword(email , userName,password);
+                    context.read<SignupCubit>().creatUserWithEmailAndPassword(
+                      email,
+                      userName,
+                      password,
+                    );
                   } else {
                     setState(() {
                       autovalidateMode = AutovalidateMode.always;
-
                     });
                   }
                 },
