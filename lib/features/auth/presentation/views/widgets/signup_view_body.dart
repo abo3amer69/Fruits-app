@@ -55,7 +55,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                   color: Color(0xffC9CECF),
                 ),
                 hintText: ' كلمة المرور',
-                textInputType: TextInputType.emailAddress,
+                textInputType: TextInputType.visiblePassword,
               ),
               SizedBox(height: 16),
               TermsAndCondition(),
