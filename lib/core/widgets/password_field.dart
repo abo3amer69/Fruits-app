@@ -15,7 +15,7 @@ class _passwordFieldState extends State<passwordField> {
   Widget build(BuildContext context) {
     return CustomTextFormField(
       obscureText: obscureText,
-      onSaved: (value) {},
+      onSaved: widget.onSaved,
       suffixIcon: GestureDetector(
         onTap: () {
           obscureText = !obscureText;
