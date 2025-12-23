@@ -33,9 +33,12 @@ class AuthRepoImpl extends AuthRepo {
       return left(ServerFailure('لقد حدث خطأ ما، الرجاء المحاولة لاحقاً.'));
     }
   }
-  
+
   @override
-  Future<Either<Failure, UserEntity>> signInWithEmailAndPassword(String email, String password, String name)async {
+  Future<Either<Failure, UserEntity>> signInWithEmailAndPassword(
+    String email,
+    String password,
+  ) async {
     try {
       var user = await firebaseAuthServices.signInWithEmailAndPassword(
         email: email,
