@@ -43,7 +43,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                 textInputType: TextInputType.emailAddress,
               ),
               SizedBox(height: 16),
-              passwordField(
+              PasswordField(
                 onSaved: (value) {
                   password = value!;
                 },

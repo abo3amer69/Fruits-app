@@ -49,7 +49,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
               ),
               SizedBox(height: 16),
 
-              passwordField(
+              PasswordField(
                 onSaved: (value) {
                   password = value!;
                 },
