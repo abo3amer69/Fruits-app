@@ -35,18 +35,20 @@ class AuthRepoImpl extends AuthRepo {
       await addUserData(user: userEntity);
       return Right(userEntity);
     } on CustomException catch (e) {
-      if (user != null) {
-        await firebaseAuthServices.deletUser();
-      }
+      await deletUser(user);
       return left(ServerFailure(e.message));
     } catch (e) {
-      if (user != null) {
-        await firebaseAuthServices.deletUser();
-      }
+      deletUser(user);
       log(
         'Exception in AuthRepoImpl creatUserWithEmaimAndPassword: ${e.toString()}',
       );
       return left(ServerFailure('لقد حدث خطأ ما، الرجاء المحاولة لاحقاً.'));
+    }
+  }
+
+  Future<void> deletUser(User? user) async {
+    if (user != null) {
+      await firebaseAuthServices.deletUser();
     }
   }
 
@@ -73,10 +75,15 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future<Either<Failure, UserEntity>> signInWithGoogle() async {
+    User? user;
     try {
       var user = await firebaseAuthServices.signInWithGoogle();
-      return Right(UserModel.fromFirebaseUser(user));
+      var userEntity = UserModel.fromFirebaseUser(user);
+      await addUserData(user: userEntity);
+
+      return Right(userEntity);
     } catch (e) {
+      await deletUser(user);
       log('Exception in AuthRepoImpl signInWithGoogle: ${e.toString()}');
       return left(ServerFailure('لقد حدث خطأ ما، الرجاء المحاولة لاحقاً.'));
     }
@@ -84,10 +91,15 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future<Either<Failure, UserEntity>> signInWithFacebook() async {
+    User? user;
     try {
       var user = await firebaseAuthServices.signInWithFacebook();
-      return Right(UserModel.fromFirebaseUser(user));
+      var userEntity = UserModel.fromFirebaseUser(user);
+      await addUserData(user: userEntity);
+
+      return Right(userEntity);
     } catch (e) {
+      await deletUser(user);
       log('Exception in AuthRepoImpl signInWithFacebook: ${e.toString()}');
       return left(ServerFailure('لقد حدث خطأ ما، الرجاء المحاولة لاحقاً.'));
     }
