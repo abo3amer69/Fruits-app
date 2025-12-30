@@ -31,8 +31,8 @@ class AuthRepoImpl extends AuthRepo {
         email: email,
         password: password,
       );
-      var userEntity = UserModel.fromFirebaseUser(user);
-      await addData(user: userEntity);
+      var userEntity = UserEntity(name: name, email: email, uid: user.uid);
+      await addUserData(user: userEntity);
       return Right(userEntity);
     } on CustomException catch (e) {
       if (user != null) {
@@ -94,7 +94,7 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future<dynamic> addData({required UserEntity user}) async {
+  Future<dynamic> addUserData({required UserEntity user}) async {
     await databaseServices.addData(
       path: BackendEndpoint.addUserData,
       data: user.toMap(),
