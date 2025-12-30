@@ -11,4 +11,10 @@ abstract class DatabaseServices {
     required String path,
     required String documentId,
   });
+
+
+  Future<bool> checkIfDataExists({
+    required String path,
+    required String documentId,
+  });
 }
