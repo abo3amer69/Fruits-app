@@ -5,8 +5,8 @@ import 'package:meta/meta.dart';
 
 part 'product_cubit_state.dart';
 
-class ProductCubitCubit extends Cubit<ProductCubitState> {
-  ProductCubitCubit(this.productRepo) : super(ProductCubitInitial());
+class ProductCubit extends Cubit<ProductCubitState> {
+  ProductCubit(this.productRepo) : super(ProductCubitInitial());
   final ProductRepo productRepo;
 
   Future<void> getProducts() async {

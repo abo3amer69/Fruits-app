@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fruits_apps/features/auth/presentation/views/signin_view.dart';
 import 'package:fruits_apps/features/auth/presentation/views/signup_view.dart';
 import 'package:fruits_apps/features/best_selling_fruit/presentation/views/best_selling_view.dart';
-import 'package:fruits_apps/features/home/presentation/views/home_view.dart';
+import 'package:fruits_apps/features/home/presentation/views/main_view.dart';
 import 'package:fruits_apps/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:fruits_apps/features/splash/presentation/views/splash_view.dart';
 
@@ -20,8 +20,8 @@ Route onGenerateRoutes(RouteSettings settings) {
     case SignupView.routeName:
       return MaterialPageRoute(builder: (context) => const SignupView());
 
-      case HomeView.routeName:
-      return MaterialPageRoute(builder: (context) => const HomeView());
+      case MainView.routeName:
+      return MaterialPageRoute(builder: (context) => const MainView());
 
       case BestSellingView.routeName:
       return MaterialPageRoute(builder: (context) => const BestSellingView());
