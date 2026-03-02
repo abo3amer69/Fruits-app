@@ -3,11 +3,9 @@ import 'dart:io';
 import 'package:fruits_apps/core/entities/product_entity.dart';
 import 'package:fruits_apps/core/models/review_model.dart';
 
-
-
 class ProductModel {
   final String name;
-
+  final num sellingCount;
   final String code;
   final String description;
   final num price;
@@ -24,6 +22,7 @@ class ProductModel {
 
   ProductModel({
     required this.name,
+    required this.sellingCount,
     required this.code,
     required this.description,
     required this.isOrganic,
@@ -37,24 +36,25 @@ class ProductModel {
     required this.reviews,
   });
 
-  factory ProductModel.fromEntity(
-    ProductEntity addProductInputEntity,
-  ) {
+  factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
-      reviews: addProductInputEntity.reviews
-          .map((e) => ReviewModel.fromEntity(e))
-          .toList(),
-      name: addProductInputEntity.name,
-      code: addProductInputEntity.code,
-      description: addProductInputEntity.description,
-      price: addProductInputEntity.price,
-      isOrganic: addProductInputEntity.isOrganic,
-      image: addProductInputEntity.image,
-      expirationMonths: addProductInputEntity.expirationMonths,
-      numberOfCalories: addProductInputEntity.numberOfCalories,
-      unitAmout: addProductInputEntity.unitAmout,
-      isFeatured: addProductInputEntity.isFeatured,
-      imageUrl: addProductInputEntity.imageUrl,
+      name: json['name'],
+      sellingCount: json['sellingCount'],
+      code: json['code'],
+      description: json['description'],
+      price: json['price'],
+      isFeatured: json['isFeatured'],
+      imageUrl: json['imageUrl'],
+      image: File(json['image']),
+      expirationMonths: json['expirationMonths'],
+      numberOfCalories: json['numberOfCalories'],
+      unitAmout: json['unitAmout'],
+      isOrganic: json['isOrganic'] ?? false,
+      reviews: (json['reviews'] != null
+          ? List<ReviewModel>.from(
+              json['reviews'].map((e) => ReviewModel.fromJson(e)),
+            )
+          : []),
     );
   }
 
