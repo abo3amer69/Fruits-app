@@ -6,8 +6,36 @@ import 'package:fruits_apps/features/auth/domain/entities/user_entity.dart';
 
 
 
-UserEntity getUser() {
+UserEntity? getUser() {  // ✅ خليها nullable
   var jsonString = Prefs.getString(kUserData);
-  var userEntity = UserModel.fromJson(jsonDecode(jsonString));
-  return userEntity;
+  
+  if (jsonString.isEmpty) {
+    return null;
+  }
+  
+  try {
+    var userEntity = UserModel.fromJson(jsonDecode(jsonString));
+    return userEntity;
+  } catch (e) {
+    return null;
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// UserEntity getUser() {
+//   var jsonString = Prefs.getString(kUserData);
+//   var userEntity = UserModel.fromJson(jsonDecode(jsonString));
+//   return userEntity;
+// }
