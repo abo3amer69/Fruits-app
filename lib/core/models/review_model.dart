@@ -37,6 +37,16 @@ class ReviewModel {
     );
   }
 
+  ReviewEntity toEntity(){
+    return ReviewEntity(
+      name: name,
+      image: image,
+      ratting: ratting,
+      date: date,
+      reviewDescripition: reviewDescripition,
+    );
+  }
+
   toJson() {
     return {
       'name': name,
